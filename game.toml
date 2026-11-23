@@ -1,0 +1,59 @@
+# Autofilled by tools/new_project_layout/probe_disc.py from your legal dump.
+# Review before shipping. Runtime quirks / overlay seeds still need hand work.
+
+[game]
+name = "Hellnight"
+id = "SLES-01562"
+players = 1
+exe = "disc/SLES_015.62"
+disc = "disc/Hellnight (Europe) (En,Fr,De).cue"
+discs = ["disc/Hellnight (Europe) (En,Fr,De).cue"]
+disc_serials = ["SLES-01562"]
+load_address = "0x80010000"
+entry_pc = "0x80036E74"
+text_size = "0x0006E000"
+stack_base = "0x801FFFF0"
+
+# Digests are for data Track 01 (first BINARY FILE / TRACK 01).
+[prepare_disc]
+out_dir = "disc"
+bin_name = "Hellnight (Europe) (En,Fr,De).bin"
+cue_name = "Hellnight (Europe) (En,Fr,De).cue"
+boot_exe = "SLES_015.62"
+known_sizes = [633786384]
+known_md5 = [
+  "050d2848368af2ef945706bc73ef69ef",
+]
+known_sha1 = [
+  "6154819380f41c921f5d37f757a9985de7803a8c",
+]
+known_crc32 = [
+  "06e7b4bd",
+]
+
+[recompiler]
+bios_config = "psxrecomp/bios/SCPH5552.toml"
+seeds = "seeds/ghidra_funcs.txt"
+out_dir = "generated"
+strict = true
+
+[runtime]
+openbios = false
+bios_hle = false
+window_title = "Hellnight Recompiled"
+memcard_dir = "saves"
+overlay_cache = true
+
+[video]
+renderer = "opengl"
+aspect_ratio = "4:3"
+
+[controller]
+default_mode = "digital"
+
+# Online mount gate: digests + track count + optional TOC fingerprint
+# (see docs/NETPLAY.md).
+[netplay]
+require_cue = true
+required_tracks = 1
+required_disc_fp = "91617156264765fc02200082e9c625eacff20bb178bae8c92a4ad45175526cf4"
